@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+require "fileutils"
+gemfile_dir_path = File.join("~/Gemfiles/#{File.basename(Dir.pwd)}")
+global_gemfile = File.expand_path(File.join("~/Gemfile"))
+puts "gemfile_dir_path"
+puts gemfile_dir_path
+FileUtils.mkdir_p File.expand_path(gemfile_dir_path)
+gemfile_path = File.join(gemfile_dir_path, "Gemfile")
+puts "gemfile_path"
+puts gemfile_path
+File.open(File.expand_path(gemfile_path), "w") do |file|
+  file.write %[instance_eval(File.read("#{global_gemfile}"))]
+end
+
+lock_file = File.join(Dir.pwd, "Gemfile.lock")
+puts lock_file
+puts "#{gemfile_path}.lock"
+FileUtils.cp lock_file, File.expand_path("#{gemfile_path}.lock")

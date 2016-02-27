@@ -1,0 +1,8 @@
+*~
+.DS_Store
+/.idea/*
+test.sqlite3
+.ruby-version
+tu_test_subject_query.rb
+json_tu_query.rb
+2500testSubjects.csv
